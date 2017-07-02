@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import './App.css';
-import KonvaContainer from './KonvaContainer';
 import Header from './components/Header';
+import Sidepopup from './components/Sidepopup';
+
 class App extends Component {
+
+  constructor(props){
+    super(props);
+    this.state = {
+      isOpen: false
+    }
+  }
+
+  toggleSidebar = () => {
+    this.setState({isOpen: !this.state.isOpen})
+  }
+
   render() {
     return (
       <div className="App">
         <p className="App-intro">
-          <Header/>
+          <Header toggleSidebar={this.toggleSidebar}/>
         </p>
-        <KonvaContainer/>
+        <Sidepopup isOpen={this.state.isOpen}/>
       </div>
     );
   }
